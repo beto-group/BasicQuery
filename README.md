@@ -19,7 +19,7 @@
   <hr>
 </div>
 
-![Basic Query Walkthrough](https://raw.githubusercontent.com/beto-group/beto.assets/main/basicquery.clip.gif)
+![Basic Query Walkthrough](assets/basicquery.clip.gif)
 
 <div align="center">
   <p>
