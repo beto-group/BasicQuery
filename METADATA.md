@@ -3,7 +3,7 @@ author: beto.group
 version: 1.0.1
 id: basic-query-101
 name: BASIC QUERY
-description: A foundational path-based vault query engine and paginated metadata table designed natively for Obsidian.
+description: A minimal, real-time query component that filters vault notes by directory.
 status: stable
 complexity: basic
 category:

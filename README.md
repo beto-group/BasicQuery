@@ -23,11 +23,11 @@
 
 <div align="center">
   <p>
-    <i> A foundational, high-performance folder-based note explorer and metadata manager designed natively for Obsidian. </i>
+    <i> A minimal, real-time search component that filters vault notes by directory path. </i>
   </p>
   <hr style="width:30%;">
 </div>
-Welcome to **Basic Query**, a foundational, path-based vault query engine and paginated data explorer designed natively for Obsidian.
+Welcome to **Basic Query**, a minimal, path-based vault query component designed natively for Obsidian.
 
 ### ⚡ Blazing Fast Architecture
 By utilizing Datacore's reactive cache mapping, Basic Query loads and aggregates notes across your entire vault with zero startup cost, delivering real-time filtering updates at 60fps.
