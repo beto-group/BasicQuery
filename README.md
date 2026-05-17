@@ -3,7 +3,7 @@
   <a name="readme-top"></a>
   <img src="https://raw.githubusercontent.com/beto-group/beto.assets/main/BETO.logo.animated.svg?raw=true" alt="LOGO" width="160">
   <h1 align="center">BASIC QUERY</h1>
-  <h3 align="center"> Tʜᴇ Pʀᴇᴍɪᴜᴍ Pᴀᴛʜ Qᴜᴇʀʏ Exᴘʟᴏʀᴇʀ </h3>
+  <h3 align="center"> Tʜᴇ Pᴀᴛʜ Qᴜᴇʀʏ Tᴀʙʟᴇ </h3>
 </div>
 
 <div align="center">
