@@ -42,9 +42,15 @@ By utilizing Datacore's reactive cache mapping, Basic Query loads and aggregates
 
 ---
 
-## 🚀 Quick Launch
-*   **Viewer Entry Point**: [BASIC QUERY.md](BASIC%20QUERY.md)
-*   **Logic Component**: [src/BasicQuery.component.jsx](src/BasicQuery.component.jsx)
-*   **Engineering Standards**: [CONTRIBUTION.md](CONTRIBUTION.md)
+## 📦 Directory Index & Components
 
-BETO.GROUP - create factotums...
+The package exposes the following compiled files:
+
+| File | Description |
+| :--- | :--- |
+| **[BASIC QUERY.md](BASIC%20QUERY.md)** | The main entry point designed to be loaded inside Obsidian canvases or workspace leaves. |
+| **[src/App.jsx](src/App.jsx)** | Main bootstrap application loader that resolves and wires the underlying views. |
+| **[src/BasicQuery.component.jsx](src/BasicQuery.component.jsx)** | High-fidelity React query layout component filtering notes by directory path. |
+| **[METADATA.md](METADATA.md)** | Packaging manifest outlining indexing, target, and security configurations. |
+| **[CONTRIBUTION.md](CONTRIBUTION.md)** | Contributor architecture standards and local compilation guidelines. |
+| **[LICENSE.md](LICENSE.md)** | MIT open-source license. |
