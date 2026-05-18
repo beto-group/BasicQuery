@@ -32,8 +32,4 @@ entry_point: BASIC QUERY.md
 logic: src/BasicQuery.component.jsx
 ---
 
-# BASIC QUERY METADATA
-
-This file contains the machine-readable packaging manifest and indexing properties for the **BASIC QUERY** component.
-
-By offloading the indexing tags here, the primary entry point `BASIC QUERY.md` remains dedicated to user-facing custom view settings and interactive configuration.
+This file contains the machine-readable packaging manifest and indexing properties for this component.
