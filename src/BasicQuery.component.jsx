@@ -13,10 +13,19 @@ const POLISHED_COLUMNS = COLUMNS.map(col => ({
   value: page => page.value(col.value)
 }));
 
-function View() {
-  const { useState } = dc;
-  const [path, setPath] = useState("_OPERATION");
-  const pages = dc.useQuery(`@page and path("${path}")`);
+import { createUniversalHook } from "./core/UniversalQuery.js";
+
+function View({ folderPath, dc }) {
+  const { useState, useMemo } = dc;
+  
+  // Setup the universal query hook instance for this datastore
+  const useUniversalQuery = useMemo(() => createUniversalHook(dc), [dc]);
+
+  const [path, setPath] = useState("path:\"_OPERATION\"");
+  const [options, setOptions] = useState({ local: true, cloud: false });
+
+  // Use federated query engine instead of native `dc.useQuery`
+  const { pages, isCloudLoading } = useUniversalQuery(path, options);
 
   const sortedPages = [...pages].sort((a, b) => {
     return new Date(b.value("$ctime")) - new Date(a.value("$ctime"));
@@ -54,8 +63,21 @@ function View() {
           <dc.Icon icon="folder" style={{ width: "18px", height: "18px", color: "#FFF" }} />
         </div>
         <div>
-          <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 700, color: "var(--text-normal)", lineHeight: 1.2 }}>Path Query Explorer</h3>
-          <p style={{ margin: 0, fontSize: "11px", color: "var(--text-muted)", fontWeight: 500, letterSpacing: "0.5px" }}>BETO.GROUP STANDALONE MODULE</p>
+          <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 700, color: "var(--text-normal)", lineHeight: 1.2 }}>Universal Query Explorer</h3>
+          <p style={{ margin: 0, fontSize: "11px", color: "var(--text-muted)", fontWeight: 500, letterSpacing: "0.5px" }}>HYBRID LOCAL + CLOUD SEARCH</p>
+        </div>
+        
+        {/* Toggle Controls */}
+        <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", opacity: options.local ? 1 : 0.5 }}>
+            <input type="checkbox" checked={options.local} onChange={e => setOptions(o => ({...o, local: e.target.checked}))} />
+            Local Data
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", opacity: options.cloud ? 1 : 0.5 }}>
+            <input type="checkbox" checked={options.cloud} onChange={e => setOptions(o => ({...o, cloud: e.target.checked}))} />
+            Cloud Database
+            {isCloudLoading && <span style={{ color: "#7A46F1" }}> (Loading...)</span>}
+          </label>
         </div>
       </div>
 
@@ -64,7 +86,7 @@ function View() {
         <input 
           value={path} 
           onChange={e => setPath(e.target.value)} 
-          placeholder="Enter folder path (e.g. _OPERATION)..." 
+          placeholder="Search using Obsidian syntax (e.g. path:\"_OPERATION\" tag:#status)..." 
           style={{
             width: "100%",
             padding: "12px 16px",
@@ -98,7 +120,7 @@ function View() {
         marginBottom: "16px"
       }}>
         <h4 style={{ margin: 0, fontSize: "13px", fontWeight: 600, color: "var(--text-muted)" }}>
-          Active Path: <span style={{ color: "#7A46F1" }}>"{path || "/"}"</span>
+          Query String: <span style={{ color: "#7A46F1" }}>"{path}"</span>
         </h4>
         <span style={{
           fontSize: "11px",
