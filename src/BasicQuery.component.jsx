@@ -22,7 +22,7 @@ function View({ folderPath, dc }) {
   const useUniversalQuery = useMemo(() => createUniversalHook(dc), [dc]);
 
   const [path, setPath] = useState("path:\"_OPERATION\"");
-  const [options, setOptions] = useState({ local: true, cloud: false });
+  const [options, setOptions] = useState({ local: true, cloud: false, gdrive: true });
 
   // Use federated query engine instead of native `dc.useQuery`
   const { pages, isCloudLoading } = useUniversalQuery(path, options);
@@ -68,14 +68,18 @@ function View({ folderPath, dc }) {
         </div>
         
         {/* Toggle Controls */}
-        <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
+        <div style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
           <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", opacity: options.local ? 1 : 0.5 }}>
             <input type="checkbox" checked={options.local} onChange={e => setOptions(o => ({...o, local: e.target.checked}))} />
-            Local Data
+            Obsidian Local
           </label>
           <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", opacity: options.cloud ? 1 : 0.5 }}>
             <input type="checkbox" checked={options.cloud} onChange={e => setOptions(o => ({...o, cloud: e.target.checked}))} />
-            Cloud Database
+            WASM Edge
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px", cursor: "pointer", opacity: options.gdrive ? 1 : 0.5 }}>
+            <input type="checkbox" checked={options.gdrive} onChange={e => setOptions(o => ({...o, gdrive: e.target.checked}))} />
+            Google Drive
             {isCloudLoading && <span style={{ color: "#7A46F1" }}> (Loading...)</span>}
           </label>
         </div>
